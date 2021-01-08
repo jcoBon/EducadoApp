@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewClassrooms">
+
+
+    <ListView
+        android:id="@+id/ClassroomListView"
+        android:layout_width="wrap_content"
+        android:layout_height="262dp"
+        android:layout_below="@+id/ClassBtn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="1dp" />
+
+    <Button
+        android:id="@+id/ClassBtn"
+        android:layout_width="341dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/ClassSectionSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:text="View Classrooms"
+        app:backgroundTint="#FF9800" />
+
+    <Spinner
+        android:id="@+id/ClassSectionSpinner"
+        android:layout_width="323dp"
+        android:layout_height="46dp"
+        android:layout_below="@+id/ClassYearSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp" />
+
+    <Spinner
+        android:id="@+id/ClassYearSpinner"
+        android:layout_width="323dp"
+        android:layout_height="46dp"
+        android:layout_below="@+id/imageView10"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="match_parent"
+        android:layout_height="217dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35dp"
+        app:srcCompat="@drawable/view_classroom" />
+
+
+</RelativeLayout>
