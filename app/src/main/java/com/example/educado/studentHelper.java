@@ -2,18 +2,18 @@ package com.example.educado;
 
 public class studentHelper {
 
-    String mobileNumber,emailAdd,fName,lName,password,studentNo,userType, year,section ;
+    String mobileNumber,emailAdd,fName,lName,password,userName,userType, year,section ;
 
     public studentHelper() {
     }
 
-    public studentHelper(String mobileNumber, String emailAdd, String fName, String lName, String password, String studentNo, String userType, String year, String section) {
+    public studentHelper(String mobileNumber, String emailAdd, String fName, String lName, String password, String userName, String userType, String year, String section) {
         this.mobileNumber = mobileNumber;
         this.emailAdd = emailAdd;
         this.fName = fName;
         this.lName = lName;
         this.password = password;
-        this.studentNo = studentNo;
+        this.userName = userName;
         this.userType = userType;
         this.year = year;
         this.section = section;
@@ -59,12 +59,12 @@ public class studentHelper {
         this.password = password;
     }
 
-    public String getStudentNo() {
-        return studentNo;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setStudentNo(String studentNo) {
-        this.studentNo = studentNo;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserType() {

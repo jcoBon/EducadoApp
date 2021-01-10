@@ -33,7 +33,7 @@ public class DisplayJoinedClasses extends AppCompatActivity {
     ListView listView;
     List<putPDFTeacher> EntryList;
 
-    String user,year,sec,CLASS;
+    String user,year,sec,CLASS,title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class DisplayJoinedClasses extends AppCompatActivity {
         user = getIntent().getStringExtra("User");
         sec = getIntent().getStringExtra("Section");
         year = getIntent().getStringExtra("Year");
+        title = getIntent().getStringExtra("Title");
         String classCode= getIntent().getStringExtra("ClassCode");
         CLASS = classCode;
 
@@ -75,6 +76,7 @@ public class DisplayJoinedClasses extends AppCompatActivity {
                 intent.putExtra("User",user);
                 intent.putExtra("Section",sec);
                 intent.putExtra("Year",year);
+                intent.putExtra("Title",title);
                 startActivity(intent);
             }
         });

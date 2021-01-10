@@ -93,15 +93,15 @@ public class create_account extends AppCompatActivity {
                                 String fName = fname.getText().toString();
                                 String lName = lname.getText().toString();
                                 String password = Password.getText().toString();
-                                String studentNo = studentNumber.getText().toString();
+                                String userName = studentNumber.getText().toString();
                                 String userType = "Student";
                                 String year = YearSpinner. getSelectedItem().toString();
                                 String section = SectionSpinner. getSelectedItem().toString();
 
-                                studentHelper studentHelper = new studentHelper(mobileNumber,emailAdd,fName,lName,password,studentNo,userType, year,section);
+                                studentHelper studentHelper = new studentHelper(mobileNumber,emailAdd,fName,lName,password,userName,userType, year,section);
 
-                                reference.child(studentNo).setValue(studentHelper);
-                                students.child(studentNo).setValue(studentHelper);
+                                reference.child(userName).setValue(studentHelper);
+                                students.child(userName).setValue(studentHelper);
 
                                 Toast.makeText(create_account.this,"USER REGISTERED",Toast.LENGTH_LONG).show();
 

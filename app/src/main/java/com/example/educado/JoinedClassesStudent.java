@@ -59,6 +59,7 @@ public class JoinedClassesStudent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int intention, long id) {
                 classHelper classHelper = EntryList.get(intention);
+                String title = EntryList.get(intention).toString();
                 String classcode = classHelper.getSubjectCode();
 
                 Intent intent = new Intent(JoinedClassesStudent.this,DisplayJoinedClasses.class);
@@ -66,6 +67,7 @@ public class JoinedClassesStudent extends AppCompatActivity {
                 intent.putExtra("User",user);
                 intent.putExtra("Section",sec);
                 intent.putExtra("Year",year);
+                intent.putExtra("Title", title);
                 startActivity(intent);
             }
         });

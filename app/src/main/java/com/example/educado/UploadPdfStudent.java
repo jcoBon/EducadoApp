@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -42,12 +43,15 @@ public class UploadPdfStudent extends AppCompatActivity {
     Button btn,view;
 
     StorageReference storageReference;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,Joined;
 
     ListView listView;
     List<studentPDFHelper> EntryList;
 
-    String user,year,sec,CLASS;
+    String user,year,sec,CLASS,title;
+
+    FirebaseDatabase UsersDatabase;
+    DatabaseReference reference,students;
 
 
     @Override
@@ -69,10 +73,18 @@ public class UploadPdfStudent extends AppCompatActivity {
         user = getIntent().getStringExtra("User");
         sec = getIntent().getStringExtra("Section");
         year = getIntent().getStringExtra("Year");
+        title = getIntent().getStringExtra("Title");
         String classCode= getIntent().getStringExtra("ClassCode");
         CLASS = classCode;
 
         btn.setEnabled(false);
+
+        UsersDatabase = FirebaseDatabase.getInstance();
+        reference = UsersDatabase.getReference("users");
+        students = UsersDatabase.getReference("Students");
+
+//        reference.child(studentNo).setValue(studentPDFHelper);
+//        students.child(studentNo).setValue(studentPDFHelper);
 
 
         editText.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +93,7 @@ public class UploadPdfStudent extends AppCompatActivity {
                 user = getIntent().getStringExtra("User");
                 sec = getIntent().getStringExtra("Section");
                 year = getIntent().getStringExtra("Year");
+                title = getIntent().getStringExtra("Title");
                 String classCode= getIntent().getStringExtra("ClassCode");
                 CLASS = classCode;
                 selectPDF();
@@ -96,11 +109,14 @@ public class UploadPdfStudent extends AppCompatActivity {
                 year = getIntent().getStringExtra("Year");
                 String classCode= getIntent().getStringExtra("ClassCode");
                 CLASS = classCode;
+                title = getIntent().getStringExtra("Title");
 
                 RetrieveList();
 
             }
         });
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -115,12 +131,10 @@ public class UploadPdfStudent extends AppCompatActivity {
         });
     }
 
-
-
     private void RetrieveList() {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("JoinClasses").child(user).child(CLASS).child("pdf");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        Joined = FirebaseDatabase.getInstance().getReference("JoinClasses").child(user).child(CLASS).child("pdf");
+        Joined.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -165,7 +179,8 @@ public class UploadPdfStudent extends AppCompatActivity {
     private void selectPDF() {
 
         storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = FirebaseDatabase.getInstance().getReference("JoinClasses").child(user).child(CLASS).child("pdf");
+        databaseReference = FirebaseDatabase.getInstance().getReference("JoinClasses").child(year).child(sec).child("PassedModule").child("pdf");
+        Joined =  FirebaseDatabase.getInstance().getReference("JoinClasses").child(user).child(CLASS).child("pdf");
 
         Intent intent = new Intent();
         intent.setType("application/pdf");
@@ -209,9 +224,18 @@ public class UploadPdfStudent extends AppCompatActivity {
                 while(!uriTask.isComplete());
                 Uri uri = uriTask.getResult();
 
-                studentPDFHelper studentPDFHelper = new studentPDFHelper(editText.getText().toString(),uri.toString());
+                String subTitle =title;
+                String studentNo = user;
+                String subCode = CLASS;
+                String subYear = year;
+                String subSec = sec;
+
+                studentPDFHelper studentPDFHelper = new studentPDFHelper(editText.getText().toString(),uri.toString(),studentNo,subSec,subYear,subCode,subTitle);
+
 
                 databaseReference.child(databaseReference.push().getKey()).setValue(studentPDFHelper);
+                Joined.child(Joined.push().getKey()).setValue(studentPDFHelper);
+
                 Toast.makeText(UploadPdfStudent.this,"File Upload", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
 

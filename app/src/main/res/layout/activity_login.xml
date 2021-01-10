@@ -24,7 +24,7 @@
         android:layout_width="314dp"
         android:layout_height="56dp"
         android:ems="10"
-        android:hint=" Student Number "
+        android:hint=" Username "
         android:inputType="textPersonName"
         android:textColor="#000000"
         android:textColorHighlight="#FF9800"
